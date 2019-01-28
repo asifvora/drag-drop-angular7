@@ -3,8 +3,6 @@
 
   <div class="list-container">
     <div class="todo-container column-container">
-      <h2>Tech to learn</h2>
-      {{LIST_IDS | json}}
       <div class="list">
         <div cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)">
           <mat-card *ngFor="let todo of todos; let i = index" cdkDrag>
