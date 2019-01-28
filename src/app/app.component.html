@@ -1,0 +1,27 @@
+<div class="container">
+  <h1> Welcome to {{ title }}!</h1>
+
+  <div class="list-container">
+    <div cdkDropListGroup class="todo-container column-container">
+      <div class="list" cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)">
+        <h2>Tech to learn</h2>
+        <mat-card *ngFor="let todo of todos; let i = index" cdkDrag>
+          <mat-card-header>
+            <mat-card-title>{{todo.name}}</mat-card-title>
+            <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
+          </mat-card-header>
+          <div>
+            <div cdkDropList #subItemList="cdkDropList" [cdkDropListData]="todo.nodes" (cdkDropListDropped)="onDropSub($event,i)">
+              <mat-card *ngFor="let sub of todo.nodes" cdkDrag [cdkDragData]="sub">
+                <mat-card-header>
+                  <mat-card-title>{{sub.name}}</mat-card-title>
+                </mat-card-header>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
