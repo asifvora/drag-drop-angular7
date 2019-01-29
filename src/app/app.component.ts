@@ -10,8 +10,6 @@ import * as $ from 'jquery';
 })
 export class AppComponent implements OnInit {
   title = 'Drag & Drop in Angular 7';
-  website = 'https://samorgill.com';
-  isSubDrop = false;
   LIST_IDS = [];
   array = ["<ul>"];
 
@@ -43,7 +41,6 @@ export class AppComponent implements OnInit {
     this.printList(this.todos);
     this.array.push("</ul>");
     $("#list").html(this.array.join(""));
-    console.log(' this.array')
   }
 
   printList(items) {
@@ -107,12 +104,10 @@ export class AppComponent implements OnInit {
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
-    console.log('event onDrop :: ', event)
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }
 
   onDropSub(event: CdkDragDrop<string[]>) {
-    console.log('****** onDropSub *******')
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -128,18 +123,4 @@ export class AppComponent implements OnInit {
 
     return id;
   }
-
-  findObjectByLabel(obj, key) {
-    console.log('obj, key', obj, key)
-    if (obj.key === key) { return obj; }
-    for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        var foundLabel = this.findObjectByLabel(obj[i], key);
-        if (foundLabel) { return foundLabel; }
-      }
-    }
-    return null;
-  };
-
-
 }
