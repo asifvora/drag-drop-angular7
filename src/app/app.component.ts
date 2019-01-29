@@ -18,13 +18,21 @@ export class AppComponent {
       Id: 1,
       name: 'Angular',
       category: 'Web Development',
-      nodes: [{ name: 'Angular-1' }, { name: 'Angular-2' }, { name: 'Angular-3' }]
+      nodes: [
+        { name: 'Angular-1', nodes: [{ name: 'NG-1' }, { name: 'NG-1.1' }] },
+        { name: 'Angular-2', nodes: [{ name: 'NG-2' }, { name: 'NG-2.1' }] },
+        { name: 'Angular-3', nodes: [{ name: 'NG-3' }, { name: 'NG-3.1' }] }
+      ]
     },
     {
       Id: 2,
       name: 'Flexbox',
       category: 'Web Development',
-      nodes: [{ name: 'Flexbox-1' }, { name: 'Flexbox-2' }, { name: 'Flexbox-3' }]
+      nodes: [
+        { name: 'Flexbox-1', nodes: [{ name: 'FB-1' }] },
+        { name: 'Flexbox-2', nodes: [{ name: 'FB-2' }] },
+        { name: 'Flexbox-3', nodes: [{ name: 'FB-3' }] }
+      ]
     }
   ];
 
