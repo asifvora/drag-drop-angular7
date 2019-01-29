@@ -19,9 +19,9 @@ export class AppComponent implements OnInit {
       name: 'Angular',
       category: 'Web Development',
       nodes: [
-        { name: 'Angular-1', nodes: [{ name: 'Angular-1.1', nodes: [] }, { name: 'Angular-1.2', nodes: [{ name: 'Angular-1.2.1', nodes: [] }] }] },
-        { name: 'Angular-2', nodes: [] },
-        { name: 'Angular-3', nodes: [] }
+        { Id: 2, name: 'Angular-1', nodes: [{ Id: 3, name: 'Angular-1.1', nodes: [] }, { Id: 4, name: 'Angular-1.2', nodes: [{ Id: 5, name: 'Angular-1.2.1', nodes: [] }] }] },
+        { Id: 6, name: 'Angular-2', nodes: [] },
+        { Id: 7, name: 'Angular-3', nodes: [] }
       ]
     },
     {
@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
       name: 'Flexbox',
       category: 'Web Development',
       nodes: [
-        { name: 'Flexbox-1', nodes: [{ name: 'fb-1.1', nodes: [{ name: 'fb-1.1.1', nodes: [{ name: 'fb-1.1.1.1', nodes: [] }] }] }] },
-        { name: 'Flexbox-2', nodes: [] },
-        { name: 'Flexbox-3', nodes: [] }
+        { Id: 8, name: 'Flexbox-1', nodes: [{ Id: 11, name: 'fb-1.1', nodes: [{ Id: 12, name: 'fb-1.1.1', nodes: [{ Id: 13, name: 'fb-1.1.1.1', nodes: [{ Id: 14, name: 'fb-1.1.1.1.1', nodes: [] }] }] }] }] },
+        { Id: 9, name: 'Flexbox-2', nodes: [] },
+        { Id: 10, name: 'Flexbox-3', nodes: [] }
       ]
     }
   ];

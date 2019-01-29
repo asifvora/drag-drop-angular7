@@ -24,23 +24,45 @@
 
         <div>
           <!-- <mat-card *ngFor="let todo of todos; let i = index">
-            <mat-card-header>
-              <mat-card-title>{{todo.name}}</mat-card-title>
-            </mat-card-header>
-            <div>
+              <mat-card-header>
+                <mat-card-title>{{todo.name}}</mat-card-title>
+              </mat-card-header>
               <div>
-                <mat-card *ngFor="let sub of todo.nodes">
-                  <mat-card-header>
-                    <mat-card-title>{{sub.name}}</mat-card-title>
-                  </mat-card-header>
-                </mat-card>
+                <div>
+                  <mat-card *ngFor="let sub of todo.nodes">
+                    <mat-card-header>
+                      <mat-card-title>{{sub.name}}</mat-card-title>
+                    </mat-card-header>
+                  </mat-card>
+                </div>
               </div>
-            </div>
-          </mat-card> -->
-          <div id="list"></div>
+            </mat-card> -->
+          <div *ngTemplateOutlet="parentNode;context:{Todos:todos}"> </div>
+          <!-- <div id="list"></div> -->
 
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #parentNode let-Todos="Todos">
+  <ul cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)">
+    <li *ngFor="let todo of Todos; let i = index" cdkDrag [attr.id]="addId('todo.Id')">
+      <h3>{{todo.name}}</h3>
+      <div *ngTemplateOutlet="childNode;context:{Nodes:todo.nodes,Id:todo.Id}"> </div>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #childNode let-Id="Id" let-Nodes="Nodes">
+  <ul cdkDropList [cdkDropListConnectedTo]="LIST_IDS" [cdkDropListData]="Nodes" (cdkDropListDropped)="onDropSub($event)"
+    [attr.id]="addId('Id')">
+    <li *ngFor="let sub of Nodes" cdkDrag>
+      <h4>{{sub.name}}</h4>
+      <div *ngIf="sub.nodes.length > 0">
+        <div *ngTemplateOutlet="parentNode;context:{Todos:sub.nodes}"> </div>
+      </div>
+    </li>
+  </ul>
+</ng-template>
