@@ -3,9 +3,8 @@
   <div class="list-container">
     <div class="todo-container column-container">
       <div class="list">
-
-        <!-- <div cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)">
-          <mat-card *ngFor="let todo of todos; let i = index" cdkDrag>
+        <!-- <div cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)"> -->
+        <!-- <mat-card *ngFor="let todo of todos; let i = index" cdkDrag>
             <mat-card-header>
               <mat-card-title>{{todo.name}}</mat-card-title>
               <mat-card-subtitle>{{todo.category}}</mat-card-subtitle>
@@ -21,25 +20,8 @@
               </div>
             </div>
           </mat-card> -->
-
         <div>
-          <!-- <mat-card *ngFor="let todo of todos; let i = index">
-              <mat-card-header>
-                <mat-card-title>{{todo.name}}</mat-card-title>
-              </mat-card-header>
-              <div>
-                <div>
-                  <mat-card *ngFor="let sub of todo.nodes">
-                    <mat-card-header>
-                      <mat-card-title>{{sub.name}}</mat-card-title>
-                    </mat-card-header>
-                  </mat-card>
-                </div>
-              </div>
-            </mat-card> -->
           <div *ngTemplateOutlet="parentNode;context:{Todos:todos}"> </div>
-          <!-- <div id="list"></div> -->
-
         </div>
       </div>
     </div>
@@ -47,8 +29,8 @@
 </div>
 
 <ng-template #parentNode let-Todos="Todos">
-  <ul cdkDropList #itemList="cdkDropList" [cdkDropListData]="todos" (cdkDropListDropped)="onDrop($event)">
-    <li *ngFor="let todo of Todos; let i = index" cdkDrag [attr.id]="addId('todo.Id')">
+  <ul cdkDropList [cdkDropListData]="Todos" (cdkDropListDropped)="onDrop($event)" *ngIf="Todos.length > 0; else NoVolumeRecord">
+    <li *ngFor="let todo of Todos; let i = index" cdkDrag [attr.id]="addId(todo.Id)">
       <h3>{{todo.name}}</h3>
       <div *ngTemplateOutlet="childNode;context:{Nodes:todo.nodes,Id:todo.Id}"> </div>
     </li>
@@ -56,13 +38,19 @@
 </ng-template>
 
 <ng-template #childNode let-Id="Id" let-Nodes="Nodes">
-  <ul cdkDropList [cdkDropListConnectedTo]="LIST_IDS" [cdkDropListData]="Nodes" (cdkDropListDropped)="onDropSub($event)"
-    [attr.id]="addId('Id')">
-    <li *ngFor="let sub of Nodes" cdkDrag>
+  <ul cdkDropList [attr.id]="addId(Id)" [cdkDropListConnectedTo]="LIST_IDS" [cdkDropListData]="Nodes"
+    (cdkDropListDropped)="onDropSub($event)" *ngIf="Nodes.length > 0; else NoVolumeRecord">
+    <li *ngFor="let sub of Nodes" cdkDrag [attr.id]="addId(sub.Id)">
       <h4>{{sub.name}}</h4>
       <div *ngIf="sub.nodes.length > 0">
-        <div *ngTemplateOutlet="parentNode;context:{Todos:sub.nodes}"> </div>
+        <div *ngTemplateOutlet="childNode;context:{Nodes:sub.nodes,Id:Id}"></div>
       </div>
     </li>
   </ul>
+</ng-template>
+
+<ng-template #NoVolumeRecord>
+  <li class="no-record-found-li-message">
+    No record found
+  </li>
 </ng-template>
