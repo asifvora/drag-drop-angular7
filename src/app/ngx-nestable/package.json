@@ -1,0 +1,64 @@
+{
+  "_from": "ngx-nestable",
+  "_id": "ngx-nestable@0.9.1",
+  "_inBundle": false,
+  "_integrity": "sha512-gu9c8fYvVYJYNFQrv6/wKKfXvE1rcAVyd2MTujVJo0gSDnplfiaOveQzDxv4k4CHfYIet4BHEof63eUc6Tiuzg==",
+  "_location": "/ngx-nestable",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "ngx-nestable",
+    "name": "ngx-nestable",
+    "escapedName": "ngx-nestable",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ngx-nestable/-/ngx-nestable-0.9.1.tgz",
+  "_shasum": "083ec81b650b6912b17325675685aff54814afa8",
+  "_spec": "ngx-nestable",
+  "_where": "/Users/md_007/Documents/asif/Angular/drag-drop-angular7",
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Petar Markov",
+      "email": "speculees@gmail.com"
+    },
+    {
+      "name": "Zlatomir Darabuc - Zlaya",
+      "email": "zlayabre@gmail.com"
+    },
+    {
+      "name": "Mihajlo Grubjesic",
+      "email": "mgrubjesic89@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "tslib": "^1.9.0"
+  },
+  "deprecated": false,
+  "description": "Nestable list with drag and drop for Angular",
+  "es2015": "esm2015/ngx-nestable.js",
+  "homepage": "https://github.com/cybercomet/ngx-nestable",
+  "keywords": [
+    "angular",
+    "nestable"
+  ],
+  "license": "MIT",
+  "main": "bundles/ngx-nestable.umd.js",
+  "metadata": "ngx-nestable.metadata.json",
+  "module": "esm5/ngx-nestable.js",
+  "name": "ngx-nestable",
+  "peerDependencies": {
+    "@angular/common": ">=5.0.0",
+    "@angular/core": ">=5.0.0"
+  },
+  "private": false,
+  "typings": "ngx-nestable.d.ts",
+  "version": "0.9.1"
+}

@@ -1,0 +1,25 @@
+import { NestableSettings } from './nestable.models';
+export declare const REGISTER_HANDLE = "NESTABLE_DRAG_HANDLE_REGISTER";
+export declare const DRAG_START = "NESTABLE_DRAG_HANDLE_START";
+export declare const EXPAND_COLLAPSE = "NESTABLE_EXPAND_COLLAPSE_EVENT";
+export declare const defaultSettings: NestableSettings;
+export declare const mouse: {
+    moving: number;
+    offsetX: number;
+    offsetY: number;
+    startX: number;
+    startY: number;
+    lastX: number;
+    lastY: number;
+    nowX: number;
+    nowY: number;
+    distX: number;
+    distY: number;
+    dirAx: number;
+    dirX: number;
+    dirY: number;
+    lastDirX: number;
+    lastDirY: number;
+    distAxX: number;
+    distAxY: number;
+};
