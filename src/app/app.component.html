@@ -1,77 +1,18 @@
 <div class="container">
-  <h1> Welcome to {{ title }}!</h1>
+  <h1>{{ title }}!</h1>
   <div class="list-container">
-    <div class="todo-container column-container">
+    <div class="column-container">
       <div class="list">
-        <!-- <div *ngTemplateOutlet="parentNode;context:{Todos:todos}"> </div> -->
+        <div *ngTemplateOutlet="treeparent"> </div>
       </div>
     </div>
   </div>
 </div>
-
-<ng-template #parentNode let-Todos="Todos">
-  <ul cdkDropList [cdkDropListData]="Todos" [cdkDropListConnectedTo]="allDropLists"
-    (cdkDropListDropped)="onDrop($event)" *ngIf="Todos.length > 0; else NoVolumeRecord">
-    <li *ngFor="let todo of Todos; let i = index" cdkDrag [id]="'node-'+ todo.Id">
-      <h3>{{todo.name}}</h3>
-      <!-- <div *ngIf="todo.nodes.length > 0"> -->
-      <div *ngTemplateOutlet="childNode;context:{Nodes:todo.nodes,Id:todo.Id}"> </div>
-      <!-- </div> -->
-    </li>
-  </ul>
-</ng-template>
-
-<ng-template #childNode let-Id="Id" let-Nodes="Nodes" let-isChild="isChild">
-  <ul [id]="'node-'+ Id" cdkDropList [cdkDropListConnectedTo]="allDropLists" [cdkDropListData]="Nodes"
-    (cdkDropListDropped)="onDropSub($event)">
-    <li *ngFor="let sub of Nodes" cdkDrag [id]="'node-' + sub.Id">
-      <h4>{{sub.name}}</h4>
-      <!-- <div *ngIf="sub.nodes.length > 0" [id]="'node-' + sub.Id" cdkDropList [cdkDropListConnectedTo]="allDropLists" [cdkDropListData]="Nodes"> -->
-      <div *ngTemplateOutlet="childNode;context:{Nodes:sub.nodes,Id:sub.Id}"></div>
-      <!-- </div> -->
-    </li>
-  </ul>
-</ng-template>
-
-<div class="container">
-  <div class="list-container">
-    <div class="todo-container column-container">
-      <div class="list">
-
-        <div class="layout-padding" id="tree2-root">
-          <!-- <ng-container *ngTemplateOutlet="recursiveList; context:{ todos: todos,isParent:true }"></ng-container> -->
-        </div>
-
-        <ng-template #recursiveList let-list="todos">
-          <ul [ngStyle]="{'list-style': 'none'}" (drop)="drop($event)" (dragover)="allowDrop($event)">
-            <li *ngFor="let item of list" dragSortable draggable="true" (dragover)="allowDrop($event)"
-              (dragstart)="drag($event)" [id]="addId(item.Id)">
-              {{item.parentId}}
-
-              <div class="tree-node">
-                <div class="pull-left tree-handle">
-                  <span class="glyphicon glyphicon-list">☩</span>
-                </div>
-                <div class="tree-node-content">
-                  {{item.name}}
-                </div>
-              </div>
-              <div class="layout-padding" *ngIf="item.nodes.length > 0">
-                <ng-container *ngTemplateOutlet="recursiveList; context:{ todos: item.nodes}"></ng-container>
-              </div>
-            </li>
-          </ul>
-        </ng-template>
-
-
-
-      </div>
-    </div>
-  </div>
-
-
+<ng-template #treeparent>
   <div id='treeparent'>
     <ejs-treeview id='treeelement' [fields]='field' [allowMultiSelection]='allowMultiSelection'
-      [allowDragAndDrop]='allowDragAndDrop' (nodeDragStop)='dragStop($event)' (nodeDragging)='nodeDrag($event)'>
+      [allowDragAndDrop]='allowDragAndDrop' (dataSourceChanged)='dataSourceChanged($event)'
+      (nodeDragStop)='dragStop($event)' (nodeDragging)='nodeDrag($event)'>
     </ejs-treeview>
   </div>
+</ng-template>

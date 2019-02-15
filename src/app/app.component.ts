@@ -1,7 +1,5 @@
 
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { DndDropEvent, DropEffect } from "ngx-drag-drop";
+import { Component, OnInit } from '@angular/core';
 import { DragAndDropEventArgs } from '@syncfusion/ej2-angular-navigations';
 
 @Component({
@@ -10,27 +8,7 @@ import { DragAndDropEventArgs } from '@syncfusion/ej2-angular-navigations';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Drag & Drop in Angular 7';
-  LIST_IDS = [];
-  LIST_IDS2 = [];
-  allDropLists = ['node-0'];
-  options = {
-    listNodeName: 'ul',
-    itemNodeName: 'li',
-    rootClass: 'dd',
-    listClass: 'dd-list',
-    itemClass: 'dd-item',
-    dragClass: 'dd-dragel',
-    handleClass: 'dd-handle',
-    collapsedClass: 'dd-collapsed',
-    placeClass: 'dd-placeholder',
-    group: 0,
-    maxDepth: 5,
-    threshold: 20,
-    fixedDepth: false,
-    exportCollapsed: true,
-    disableDrag: false,
-  }
+  title = 'Welcome to Multilevel Drag & Drop in Angular 7';
   todos: Object[] = [
     {
       Id: 1,
@@ -64,71 +42,13 @@ export class AppComponent implements OnInit {
       child: []
     }
   ];
-  private currentDraggableEvent: DragEvent;
-
-  ngOnInit() {
-    // this.arrayMap(this.todos);
-  }
-
-  // addIds(Id) {
-  //   const id = 'node-' + Id;
-  //   if (this.allDropLists.indexOf(id) === -1) {
-  //     this.allDropLists.push(id);
-  //   }
-  // }
-
-  // arrayMap(items) {
-  //   items.map(x => {
-  //     this.addIds(x.Id);
-  //     if (x.nodes && x.nodes.length) {
-  //       this.arrayMap(x.nodes);
-  //     }
-  //   })
-  // }
-
-  // onDrop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  // }
-
-  // onDropSub(event: CdkDragDrop<string[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-  //   }
-  // }
-
-  // // addId(i) {
-  // //   const id = 'cdk-drop-list-' + i;
-  // //   if (this.LIST_IDS.indexOf(id) === -1) {
-  // //     this.LIST_IDS.push(id);
-  // //   }
-
-  // //   return id;
-  // // }
-
-  // drop(ev) {
-  //   // console.log('drop :: ', ev)
-  //   ev.preventDefault();
-  //   var data = ev.dataTransfer.getData("text");
-  //   ev.target.appendChild(document.getElementById(data));
-  // }
-
-  // allowDrop(ev) {
-  //   // console.log('allowDrop :: ', ev)
-
-  //   ev.preventDefault();
-  // }
-
-  // drag(ev) {
-  //   console.log('drag :: ', ev)
-
-  //   ev.dataTransfer.setData("text", ev.target.id);
-  // }
-
   // maps the appropriate column to fields property
   public field: Object = { dataSource: this.todos, id: 'Id', parentID: 'parentId', text: 'name', hasChildren: 'hasChild' };
   public allowDragAndDrop: boolean = true;
+  private allowMultiSelection: Boolean = true;
+
+  ngOnInit() { }
+
 
   public nodeDrag(args: DragAndDropEventArgs): void {
     if ((args['draggedNodeData'] && args['draggedNodeData']['parentID'] !== null) && (args['droppedNodeData'] && args['droppedNodeData']['parentID'] === null)) {
@@ -173,5 +93,10 @@ export class AppComponent implements OnInit {
     } else if ((args['droppedNodeData'] === null) && (args['draggedNodeData'] && args['draggedNodeData']['parentID'] !== null)) {
       args.cancel = true;
     }
+  }
+
+  //get updated array
+  public dataSourceChanged(e): void {
+    console.log('dataSourceChanged', e)
   }
 }
